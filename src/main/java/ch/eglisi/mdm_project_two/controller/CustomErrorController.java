@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Controller
 public class CustomErrorController implements ErrorController {
-    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(CustomErrorController.class);
+    private final Logger logger = org.slf4j.LoggerFactory.getLogger(CustomErrorController.class);
 
     @RequestMapping("/error")
     public ModelAndView handleError(HttpServletRequest request) {

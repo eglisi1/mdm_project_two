@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Result</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Image:</h2>
+      <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Uploaded Image">
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h2>Classifications:</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Class</th>
+          <th>Probability</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entry, index : ${classifications}">
+          <td th:text="${entry.className}"></td>
+          <td th:text="${entry.probability}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <a class="btn btn-primary" th:href="@{/}">Go to Home Page</a>
+</div>
+</body>
+</html>
