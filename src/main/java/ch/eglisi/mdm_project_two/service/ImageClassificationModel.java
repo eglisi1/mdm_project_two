@@ -18,7 +18,6 @@ import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 import ai.djl.translate.Translator;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -71,7 +70,7 @@ public class ImageClassificationModel {
     private ZooModel<Image, Classifications> loadModel(Translator<Image, Classifications> translator) {
         Criteria<Image, Classifications> criteria = Criteria.builder()
                 .setTypes(Image.class, Classifications.class)
-                .optModelPath(Paths.get("build/pytorch_models/resnet18"))
+                .optModelPath(Paths.get(modelRes))
                 .optOption("mapLocation", "true") // this model requires mapLocation for GPU
                 .optTranslator(translator)
                 .optProgress(new ProgressBar()).build();
@@ -113,18 +112,6 @@ public class ImageClassificationModel {
             return ImageFactory.getInstance().fromInputStream(img.getInputStream());
         } catch (IOException e) {
             logger.error("Failed to load image");
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Classifications predict(Image img) {
-        logger.info("Predicting...");
-        try (Predictor<Image, Classifications> predictor = model.newPredictor()) {
-            var classifications = predictor.predict(img);
-            logger.info("classification: " + classifications);
-            return classifications;
-        } catch (TranslateException e) {
-            logger.error("Failed to predict");
             throw new RuntimeException(e);
         }
     }
