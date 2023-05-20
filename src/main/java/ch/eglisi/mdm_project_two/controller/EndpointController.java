@@ -2,7 +2,6 @@ package ch.eglisi.mdm_project_two.controller;
 
 import ch.eglisi.mdm_project_two.model.ClassificationDto;
 import ch.eglisi.mdm_project_two.service.ImageClassificationModel;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
