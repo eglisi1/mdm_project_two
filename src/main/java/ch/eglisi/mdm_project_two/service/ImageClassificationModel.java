@@ -47,7 +47,7 @@ public class ImageClassificationModel {
             // download pretrained model from the model zoo
             DownloadUtils.download(modelUrl, modelRes + "resnet18.pt", new ProgressBar());
 
-            // save synset.txt with the classificator labels in the build/pytorch_models folder
+            // save synset.txt with the classification labels in the build/pytorch_models folder
             DownloadUtils.download(synsetUrl, modelRes + "synset.txt", new ProgressBar());
             logger.info("Model and synset.txt downloaded successfully");
         } catch (IOException e) {
